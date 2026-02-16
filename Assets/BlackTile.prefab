@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2894700591322607592}
   - component: {fileID: 6419042729191732950}
   - component: {fileID: 1078948552771409510}
+  - component: {fileID: 2714906619435837469}
   m_Layer: 0
   m_Name: BlackTile
   m_TagString: Untagged
@@ -125,3 +126,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e383c6036fdd46c41a3e948f62b0c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
+--- !u!114 &2714906619435837469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6275227796963033235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f1a71f6f7a4e540a8d529da630c191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Black
