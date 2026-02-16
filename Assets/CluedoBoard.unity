@@ -1926,7 +1926,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1031103201}
+  m_Father: {fileID: 1766716793}
   m_LocalEulerAnglesHint: {x: 87.218, y: -15.86, z: 74.432}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -6440,8 +6440,6 @@ Transform:
   - {fileID: 1329283958}
   - {fileID: 1221351533}
   - {fileID: 1808490586}
-  - {fileID: 1798747541}
-  - {fileID: 330585546}
   - {fileID: 207749491}
   - {fileID: 5170022959518714097}
   - {fileID: 86188756}
@@ -11147,7 +11145,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1798747541}
+  - {fileID: 330585546}
   m_Father: {fileID: 1024587692}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1766716794
@@ -11163,7 +11163,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
   moveSpeed: 5
-  rayLength: 1.5
   stage: {fileID: 0}
   nearby: []
 --- !u!1001 &1769208797
@@ -11396,7 +11395,7 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1031103201}
+  m_Father: {fileID: 1766716793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1798747542
 CapsuleCollider:

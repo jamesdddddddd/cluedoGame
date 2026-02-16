@@ -14,6 +14,10 @@ public class Tile : MonoBehaviour
     
     }
 
+    // This is not the game hello neighbour sadly, but it does find all the neighbouring tiles to eachother which is pretty nice.
+    // It makes a sphere collider slightly larger than the tile itself (10% extra= 1.1f).
+    // All objects with a Tile script component (i.e. a "Tile") within this collider get added to a 'neighbours' array.
+
     public void helloNeighbour()
     {
     neighbours.Clear();
@@ -27,7 +31,8 @@ public class Tile : MonoBehaviour
     }
     }
     
-    public Vector3 GetTopPosition()
+    // Gets the top position when clicked, for the players movement.
+    public Vector3 getTopPosition()
     {
         return new Vector3(transform.position.x, 0.5f, transform.position.z);
     }
