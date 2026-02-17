@@ -15,8 +15,10 @@ public class Dice : MonoBehaviour
 
     private bool _hasStoppedRolling;
     private bool _delayFinished;
+    private bool logged;
 
     public static UnityAction<int, int> OndiceResult;
+    
 
     private void Awake()
     {
@@ -56,7 +58,11 @@ public class Dice : MonoBehaviour
         }
 
         // displays the result in the log
-        Debug.Log($"Dice result {topFace + 1}");
+        if (!logged)
+        {
+            Debug.Log($"Dice result {topFace + 1}");
+            logged = true;
+        }
 
         OndiceResult?.Invoke(_diceIndex, topFace + 1);
         return topFace + 1;
