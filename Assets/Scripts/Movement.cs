@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using System;
+using UnityEngine.Assertions.Must;
 
 public class Movement : MonoBehaviour
 {
@@ -17,7 +19,9 @@ public class Movement : MonoBehaviour
     private bool isMoving = false;
     
     // TBC - Just helps us visualise and test movement atm, we will need to link this up with the dice mechanics.
-    private int move_tokens = 8;
+    private int move_tokens = 0;
+    public diceManager DM;
+    private bool logged = false;
 
     // Makes sure that the player is in the designated starting position when the game begins.
     void Start() 
@@ -38,16 +42,29 @@ public class Movement : MonoBehaviour
         if (isMoving) {
             movePlayer();
         }
+
+        DM.Calc();
     }
+
 
     // Uses raycasting to check what object the player is intending to click.
     void checkInput() 
     {
+
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
-        
+
         if (Physics.Raycast(ray, out RaycastHit hit)) 
         {
+          
+            if (!logged)
+            {
+                move_tokens = DM.diceSum;
+                if (move_tokens > 0)
+                {
+                    logged = true;
+                }
+            }
 
             // Chekcs if the object clicked by the player is a Tile, if not, throws an error.
             Tile clickedTile = hit.collider.GetComponent<Tile>();
@@ -64,7 +81,6 @@ public class Movement : MonoBehaviour
                 whereWeAt();
                 return; 
             }
-
 
             // Accesses the script of the current tile  and checks for the neighbours.
             Tile currentStand = stage.GetComponent<Tile>();

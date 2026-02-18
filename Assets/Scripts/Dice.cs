@@ -11,7 +11,7 @@ public class Dice : MonoBehaviour
     public Rigidbody rb;
 
     // It depends on the num of dices u have
-    private int _diceIndex = -1;
+    public int _diceIndex = -1;
 
     private bool _hasStoppedRolling;
     private bool _delayFinished;
