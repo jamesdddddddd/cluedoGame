@@ -6,8 +6,8 @@ using UnityEngine.Events;
 public class diceManager : MonoBehaviour
 {
     public int diceSum = 0;
-    private int value1 = 0;
-    private int value2 = 0;
+    public int value1 = 0;
+    public int value2 = 0;
 
     private void OnEnable()
     {

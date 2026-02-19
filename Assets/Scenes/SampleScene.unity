@@ -3065,7 +3065,7 @@ Transform:
   m_GameObject: {fileID: 445744742}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.26466, y: 4, z: 6.228319}
+  m_LocalPosition: {x: -5, y: 2, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10580,7 +10580,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.00000086426724, z: -0, w: 1}
   m_LocalPosition: {x: -0.23534012, y: 0, z: -2.7783184}
-  m_LocalScale: {x: 10, y: 5, z: 0.5}
+  m_LocalScale: {x: 5.0399, y: 5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 445744743}
@@ -11581,6 +11581,7 @@ MonoBehaviour:
   moveSpeed: 5
   stage: {fileID: 0}
   nearby: []
+  move_tokens: 18
   DM: {fileID: 1882062579}
 --- !u!1001 &1769208797
 PrefabInstance:
@@ -11852,7 +11853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -12402,6 +12403,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   diceSum: 0
+  value1: 0
+  value2: 0
 --- !u!4 &1882062580
 Transform:
   m_ObjectHideFlags: 0

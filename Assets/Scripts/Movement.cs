@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
     private bool isMoving = false;
     
     // TBC - Just helps us visualise and test movement atm, we will need to link this up with the dice mechanics.
-    private int move_tokens = 0;
+    public int move_tokens = 0;
     public diceManager DM;
     private bool logged = false;
 
