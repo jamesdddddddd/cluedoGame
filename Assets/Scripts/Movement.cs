@@ -3,9 +3,24 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System;
 using UnityEngine.Assertions.Must;
+using UnityEngine.EventSystems;
 
 public class Movement : MonoBehaviour
 {
+
+    // Fields for rooms and door UI for entry and exit.
+    // Each one of these contains a room platform object for the player to teleport to when a door is found.
+    public DoorUI doorui;
+    public GameObject kitchen;
+    public GameObject ball;
+    public GameObject conserve;
+    public GameObject dining;
+    public GameObject billiard;
+    public GameObject library;
+    public GameObject lounge;
+    public GameObject hall;
+    public GameObject study;
+
     // Move speed for the player pieces.
     public float moveSpeed = 5f;
 
@@ -17,6 +32,8 @@ public class Movement : MonoBehaviour
     // Fields for movement target and switch.
     private Vector3 targetPosition;
     private bool isMoving = false;
+
+    public int infinite_move = 1000;
     
     // TBC - Just helps us visualise and test movement atm, we will need to link this up with the dice mechanics.
     public int move_tokens = 0;
@@ -42,9 +59,74 @@ public class Movement : MonoBehaviour
         if (isMoving) {
             movePlayer();
         }
-
         DM.Calc();
+
+        // Checks if the tile under the player is a door and prompts option of entry if so.
+        if (stage.GetComponent<Door>() != null)
+        {
+            doorui.notifDoor("Room Found!");
+        }
+
+        // Clears door notification and button when player is no longer on door tile.
+        if (stage.GetComponent<Door>() == null)
+        {
+            doorui.noMoDoor();
+        }
     }
+
+
+    // Method for entering a room, checks if the current tile under the player is a designated door of a room.
+    public void roomEntry()
+    {
+        if (stage.GetComponent<KitchenDoor>() != null)
+        {
+         Kitchen kitchRoom = kitchen.GetComponent<Kitchen>();
+         transform.position = kitchRoom.roomMove();
+        }
+        if (stage.GetComponent<BallDoor>() != null)
+        {
+         Ball ballRoom = ball.GetComponent<Ball>();
+         transform.position = ballRoom.roomMove();
+        }
+        if (stage.GetComponent<ConsDoor>() != null)
+        {
+         Conservatory consRoom = conserve.GetComponent<Conservatory>();
+         transform.position = consRoom.roomMove();
+        }
+        if (stage.GetComponent<DineDoor>() != null)
+        {
+         Dining dineRoom = dining.GetComponent<Dining>();
+         transform.position = dineRoom.roomMove();
+        }
+        if (stage.GetComponent<BilliarDoor>() != null)
+        {
+         Billiard billRoom = billiard.GetComponent<Billiard>();
+         transform.position = billRoom.roomMove();
+        }
+        if (stage.GetComponent<LibDoor>() != null)
+        {
+         Library libRoom = library.GetComponent<Library>();
+         transform.position = libRoom.roomMove();
+        }
+        if (stage.GetComponent<LoungeDoor>() != null)
+        {
+         Lounge louRoom = lounge.GetComponent<Lounge>();
+         transform.position = louRoom.roomMove();
+        }
+        if (stage.GetComponent<HallDoor>() != null)
+        {
+         Hall hallRoom = hall.GetComponent<Hall>();
+         transform.position = hallRoom.roomMove();
+        }
+        if (stage.GetComponent<StudDoor>() != null)
+        {
+         Study studRoom = study.GetComponent<Study>();
+         transform.position = studRoom.roomMove();
+        }
+        whereWeAt();
+        doorui.roomExit();
+    }
+
 
 
     // Uses raycasting to check what object the player is intending to click.
@@ -81,6 +163,7 @@ public class Movement : MonoBehaviour
                 whereWeAt();
                 return; 
             }
+            
 
             // Accesses the script of the current tile  and checks for the neighbours.
             Tile currentStand = stage.GetComponent<Tile>();
@@ -97,7 +180,7 @@ public class Movement : MonoBehaviour
             {
                 if (isWhite && !onWhite) 
                 {
-                    if (move_tokens > 0)
+                    if (infinite_move > 0)
                     {
                     initiateMove(clickedTile.getTopPosition(), true); 
                     move_tokens = move_tokens - 1;  
@@ -106,7 +189,7 @@ public class Movement : MonoBehaviour
                 }
                 else if (isBlack && onWhite)
                 {
-                    if (move_tokens > 0)
+                    if (infinite_move > 0)
                     {
                     initiateMove(clickedTile.getTopPosition(), false);
                     move_tokens = move_tokens -1;
@@ -154,4 +237,5 @@ public class Movement : MonoBehaviour
             stage = hit.collider.gameObject;
         }
     }
+
 }

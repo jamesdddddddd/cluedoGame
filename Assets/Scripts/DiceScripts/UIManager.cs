@@ -6,6 +6,8 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text diceOneText, diceTwoText;
+    public TextMeshProUGUI doorNotif;
+
     private void OnEnable()
     {
         Dice.OndiceResult += SetText;
@@ -27,4 +29,5 @@ public class UIManager : MonoBehaviour
             diceOneText.SetText($"Dice one rolled a {diceResult}");
         }
     }
+
 }
