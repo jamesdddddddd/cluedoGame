@@ -3,9 +3,9 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System;
 using UnityEngine.Assertions.Must;
-using UnityEngine.EventSystems;
+using Unity.Netcode;
 
-public class Movement : MonoBehaviour
+public class Movement : NetworkBehaviour
 {
 
     // Fields for rooms and door UI for entry and exit.
@@ -41,8 +41,11 @@ public class Movement : MonoBehaviour
     private bool logged = false;
 
     // Makes sure that the player is in the designated starting position when the game begins.
-    void Start() 
+    public override void OnNetworkSpawn() 
     {
+        // Search the scene for the diceManager script
+        //this prevents the dice from throwing null execptions
+        DM = GameObject.FindAnyObjectByType<diceManager>();
         transform.position = new Vector3(4.5f, 0.5f, 0.5f);
         whereWeAt();
     }
@@ -50,7 +53,8 @@ public class Movement : MonoBehaviour
     // Checks every frame if the mouse was clicked to initiate movement if valid.
     void Update() 
     {
-    
+        if (!IsSpawned) return;
+
         if (Mouse.current.leftButton.wasPressedThisFrame && !isMoving) 
         {
             checkInput();
