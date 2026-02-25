@@ -48,6 +48,11 @@ public class Movement : NetworkBehaviour
         DM = GameObject.FindAnyObjectByType<diceManager>();
         transform.position = new Vector3(4.5f, 0.5f, 0.5f);
         whereWeAt();
+        //if doorUI is null, find it automatically to avoid nullreference errors
+        if (doorui == null)
+        {
+            doorui = GameObject.FindAnyObjectByType<DoorUI>();
+        }
     }
 
     // Checks every frame if the mouse was clicked to initiate movement if valid.
@@ -70,12 +75,14 @@ public class Movement : NetworkBehaviour
         {
             doorui.notifDoor("Room Found!");
         }
-
+        
+        
         // Clears door notification and button when player is no longer on door tile.
         if (stage.GetComponent<Door>() == null)
         {
             doorui.noMoDoor();
         }
+       
     }
 
 
