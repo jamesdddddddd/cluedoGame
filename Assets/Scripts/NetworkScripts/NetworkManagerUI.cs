@@ -20,7 +20,7 @@ public class NetworkManagerUI : MonoBehaviour
         serverButton.onClick.AddListener(() =>
         {
             NetworkManager.Singleton.StartServer();
-            Debug.Log("server pressed");
+            //Debug.Log("server pressed");
         });
         //if host button clicked, start host
         hostButton.onClick.AddListener(() =>

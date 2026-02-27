@@ -58,6 +58,8 @@ public class Movement : NetworkBehaviour
     // Checks every frame if the mouse was clicked to initiate movement if valid.
     void Update() 
     {
+        //add the isOwner guard, so this will not run if the user does not own the object the script is being run on
+        if (!IsOwner) return;
         if (!IsSpawned) return;
 
         if (Mouse.current.leftButton.wasPressedThisFrame && !isMoving) 
