@@ -1,13 +1,13 @@
 using UnityEngine;
 using TMPro;
 
-public class DoorUI : MonoBehaviour
+public class DoorUI : Unity.Netcode.NetworkBehaviour
 {
     public TextMeshProUGUI doorNotif;
     public GameObject enterButton;
     public GameObject exitButton;
 
-    void start()
+    public override void OnNetworkSpawn()
     {
         doorNotif.gameObject.SetActive(false);
         enterButton.SetActive(false);
