@@ -13,17 +13,21 @@ public class DiceThrow : MonoBehaviour
     public float rollForce = 10f;
 
     private List<GameObject> _spawnedObjects = new List<GameObject>();
+    private bool logged = false;
 
     private void Update()
     {
         // do func if press space
-        if (Input.GetKeyDown(KeyCode.Space)) RollDice();
+        if (Input.GetKeyDown(KeyCode.Space) && !logged) RollDice();
+        else if (Input.GetKeyDown(KeyCode.Space) && logged)
+            print("You have already rolled the dice.");
     }
 
     // async waits defoar spawning a functin
     private async void RollDice()
     {
         if(diceToThrow == null) return;
+        logged = true;
 
         foreach (var die in _spawnedObjects)
         {
