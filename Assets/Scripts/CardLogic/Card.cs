@@ -1,16 +1,16 @@
+using System.IO.Enumeration;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+[CreateAssetMenu(fileName = "New Card",menuName = "Card")]
+public class Card : ScriptableObject 
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public string cardName;
+    public CardType cardType;
+    
+    public enum CardType 
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Weapon,
+        character,
+        Room
     }
 }
