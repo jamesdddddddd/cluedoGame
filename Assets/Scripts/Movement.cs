@@ -8,7 +8,7 @@ using Unity.Netcode;
 public class Movement : NetworkBehaviour
 {
 
-    // Fields for rooms and door UI for entry and exit.
+    // Fields for rooms and door UI for entry and exit
     // Each one of these contains a room platform object for the player to teleport to when a door is found.
     public DoorUI doorui;
     public GameObject kitchen;
