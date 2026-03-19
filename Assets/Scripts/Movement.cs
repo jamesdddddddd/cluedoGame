@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.Assertions.Must;
 using Unity.Netcode;
+using turnyWurny;
 
 public class Movement : NetworkBehaviour
 {
@@ -20,6 +21,12 @@ public class Movement : NetworkBehaviour
     public GameObject lounge;
     public GameObject hall;
     public GameObject study;
+
+    // For turn based
+    public GameObject TurnMan;
+    public TurnManager whomst;
+
+    public Camera cam1;
 
     // Move speed for the player pieces.
     public float moveSpeed = 5f;
@@ -45,6 +52,7 @@ public class Movement : NetworkBehaviour
     {
         // Search the scene for the diceManager script
         //this prevents the dice from throwing null execptions
+        whomst = TurnMan.GetComponent<TurnManager>();
         DM = GameObject.FindAnyObjectByType<diceManager>();
         transform.position = new Vector3(4.5f, 0.5f, 0.5f);
         whereWeAt();
@@ -57,13 +65,15 @@ public class Movement : NetworkBehaviour
 
         if (Mouse.current.leftButton.wasPressedThisFrame && !isMoving) 
         {
-            checkInput();
+            if (whomst.phase == TurnStage.MOVING)
+            {
+                checkInput();
+            }
         }
 
         if (isMoving) {
             movePlayer();
         }
-        DM.Calc();
 
         // Checks if the tile under the player is a door and prompts option of entry if so.
         if (stage.GetComponent<Door>() != null)
@@ -138,7 +148,7 @@ public class Movement : NetworkBehaviour
     {
 
         Vector2 mousePos = Mouse.current.position.ReadValue();
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        Ray ray = cam1.ScreenPointToRay(mousePos);
 
         if (Physics.Raycast(ray, out RaycastHit hit)) 
         {
@@ -167,11 +177,13 @@ public class Movement : NetworkBehaviour
                 whereWeAt();
                 return; 
             }
-            
 
-            // Accesses the script of the current tile  and checks for the neighbours.
-            Tile currentStand = stage.GetComponent<Tile>();
-            nearby = currentStand.neighbours;
+            if (stage.GetComponent<Tile>() != null)
+            {
+                // Accesses the script of the current tile  and checks for the neighbours.
+                Tile currentStand = stage.GetComponent<Tile>();
+                nearby = currentStand.neighbours;
+            }
 
             bool isNeighbor = nearby.Contains(hit.collider.gameObject);
           
@@ -200,10 +212,11 @@ public class Movement : NetworkBehaviour
                     Debug.LogError(move_tokens + " moves left!");
                     }
                 }
-                if (move_tokens == 0)
+                if (move_tokens == 0 && whomst.phase == TurnStage.MOVING)
                 {
                     // Debug.LogError("Rerolling..."); This code was to allow further movement and creation of random values to imitate dice.
                     // move_tokens = Random.Range(2, 12);
+                    whomst.phase = TurnStage.SUGGESTING;
                     Debug.LogError("You now have " + move_tokens + " moves left");
 
                 }
