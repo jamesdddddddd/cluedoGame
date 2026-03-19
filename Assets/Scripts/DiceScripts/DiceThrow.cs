@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using turnyWurny;
 
 public class DiceThrow : MonoBehaviour
 {
@@ -12,12 +13,21 @@ public class DiceThrow : MonoBehaviour
     public float throwForce = 5f;
     public float rollForce = 10f;
 
+    public GameObject turny;
+
     private List<GameObject> _spawnedObjects = new List<GameObject>();
 
+    private void Start()
+    {
+    }
     private void Update()
     {
+        TurnManager whatPhase = turny.GetComponent<TurnManager>();
         // do func if press space
-        if (Input.GetKeyDown(KeyCode.Space)) RollDice();
+        if (Input.GetKeyDown(KeyCode.Space) && whatPhase.phase == TurnStage.ROLLING) 
+        {
+            RollDice(); 
+        }
     }
 
     // async waits defoar spawning a functin
