@@ -4,11 +4,17 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.Assertions.Must;
 using Unity.Netcode;
+using turnyWurny;
 
 public class Movement : NetworkBehaviour
-{
+{   
+    //this is to specify the right camera to use for the raycast
+    //hopefully this fixes the multiplayer clients
+    //must now assign this for each player i believe
+    private Camera playerCamera;  
+    
 
-    // Fields for rooms and door UI for entry and exit.
+    // Fields for rooms and door UI for entry and exit
     // Each one of these contains a room platform object for the player to teleport to when a door is found.
     public DoorUI doorui;
     public GameObject kitchen;
@@ -20,6 +26,12 @@ public class Movement : NetworkBehaviour
     public GameObject lounge;
     public GameObject hall;
     public GameObject study;
+
+    // For turn based
+    public GameObject TurnMan;
+    public TurnManager whomst;
+
+    public Camera cam1;
 
     // Move speed for the player pieces.
     public float moveSpeed = 5f;
@@ -40,11 +52,30 @@ public class Movement : NetworkBehaviour
     public diceManager DM;
     private bool logged = false;
 
+
+
+
     // Makes sure that the player is in the designated starting position when the game begins.
     public override void OnNetworkSpawn() 
     {
+
+        playerCamera = GetComponentInChildren<Camera>();
+        if (IsOwner)
+        {
+            playerCamera.enabled = true;
+            playerCamera.tag = "MainCamera";
+
+        }
+        else
+        {
+            playerCamera.enabled = false;
+            // It's good practice to untag non-owner cameras
+            playerCamera.tag = "Untagged";
+        }
+
         // Search the scene for the diceManager script
         //this prevents the dice from throwing null execptions
+        whomst = TurnMan.GetComponent<TurnManager>();
         DM = GameObject.FindAnyObjectByType<diceManager>();
         transform.position = new Vector3(4.5f, 0.5f, 0.5f);
         whereWeAt();
@@ -58,19 +89,56 @@ public class Movement : NetworkBehaviour
     // Checks every frame if the mouse was clicked to initiate movement if valid.
     void Update() 
     {
+
+        playerCamera = GetComponentInChildren<Camera>();
+
+
+
+
         //add the isOwner guard, so this will not run if the user does not own the object the script is being run on
         if (!IsOwner) return;
         if (!IsSpawned) return;
 
+        
+
+        //protecet against update running before onnetworkspawn TESTING MAY BE TEMP
+        if (DM == null) DM = GameObject.FindAnyObjectByType<diceManager>();
+
+        //check if any of this is null, if so exit out of the loop to prevent errors till they are initialised in OnNetworkSpawn()
+
+        if (DM == null || doorui == null || playerCamera == null || stage == null) return;
+
+
+        //ensures the client is using raycasting from its camera rather than any other
+        playerCamera = GetComponentInChildren<Camera>();
+
+        //MORE TESTING 
+        // Safety: If stage hasn't been found yet, try to find it and STOP here
+        if (stage == null)
+        {
+            whereWeAt();
+            return; // Exit Update early so we don't hit the crash on Line 100
+        }
+
+
+
+
+        if (stage.GetComponent<Door>() == null)
+        {
+            doorui.noMoDoor();
+        }
+
         if (Mouse.current.leftButton.wasPressedThisFrame && !isMoving) 
         {
-            checkInput();
+            if (whomst.phase == TurnStage.MOVING)
+            {
+                checkInput();
+            }
         }
 
         if (isMoving) {
             movePlayer();
         }
-        DM.Calc();
 
         // Checks if the tile under the player is a door and prompts option of entry if so.
         if (stage.GetComponent<Door>() != null)
@@ -147,7 +215,7 @@ public class Movement : NetworkBehaviour
     {
 
         Vector2 mousePos = Mouse.current.position.ReadValue();
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        Ray ray = playerCamera.ScreenPointToRay(mousePos);
 
         if (Physics.Raycast(ray, out RaycastHit hit)) 
         {
@@ -176,11 +244,13 @@ public class Movement : NetworkBehaviour
                 whereWeAt();
                 return; 
             }
-            
 
-            // Accesses the script of the current tile  and checks for the neighbours.
-            Tile currentStand = stage.GetComponent<Tile>();
-            nearby = currentStand.neighbours;
+            if (stage.GetComponent<Tile>() != null)
+            {
+                // Accesses the script of the current tile  and checks for the neighbours.
+                Tile currentStand = stage.GetComponent<Tile>();
+                nearby = currentStand.neighbours;
+            }
 
             bool isNeighbor = nearby.Contains(hit.collider.gameObject);
           
@@ -209,10 +279,11 @@ public class Movement : NetworkBehaviour
                     Debug.LogError(move_tokens + " moves left!");
                     }
                 }
-                if (move_tokens == 0)
+                if (move_tokens == 0 && whomst.phase == TurnStage.MOVING)
                 {
                     // Debug.LogError("Rerolling..."); This code was to allow further movement and creation of random values to imitate dice.
                     // move_tokens = Random.Range(2, 12);
+                    whomst.phase = TurnStage.SUGGESTING;
                     Debug.LogError("You now have " + move_tokens + " moves left");
 
                 }
@@ -248,6 +319,7 @@ public class Movement : NetworkBehaviour
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 2.0f))
         {
             stage = hit.collider.gameObject;
+            Debug.Log(stage);
         }
     }
 
