@@ -91,7 +91,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.0004361383, y: 0.000024057455, z: 0.00065900147, w: 0.9999997}
   m_LocalPosition: {x: -1.4948053, y: -4.0121193, z: -0.33014905}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4319085935170289698}
@@ -150,7 +150,6 @@ MonoBehaviour:
   - {fileID: 7536105140367958228}
   - {fileID: 2391259031155365786}
   rb: {fileID: 1397753645878072316}
-  _diceIndex: -1
 --- !u!64 &5337121043450165186
 MeshCollider:
   m_ObjectHideFlags: 0
