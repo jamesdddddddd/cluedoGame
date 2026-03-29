@@ -339,13 +339,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf85f4b93a5d2014caa2c560257d94e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandManager
+  deckManager: {fileID: 0}
   cardPrefab: {fileID: 7712591915730703324, guid: bcae57bc8c333b84ea899e3466425505, type: 3}
   handTransform: {fileID: 999563025}
   fanSpread: 7.5
   cardsInHand: []
   cardSpacing: -200
   verticalSpacing: 20
-  cardsAmount: 3
+  cardsAmount: 9
+  allCards: []
 --- !u!1 &1576514192
 GameObject:
   m_ObjectHideFlags: 0
