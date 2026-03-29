@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc9b64a46d228344385179b6409160f8, type: 3}
-  m_Name: Lead Pipe
+  m_Name: James
   m_EditorClassIdentifier: Assembly-CSharp::Card
-  cardName: Lead Pipe
+  cardName: James
   cardType: 0
