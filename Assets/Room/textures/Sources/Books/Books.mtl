@@ -1,0 +1,68 @@
+# Blender 3.5.0 MTL File: 'Books.blend'
+# www.blender.org
+
+newmtl Book_1
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Textures/Book1_DIFF.png
+map_Ns Textures/Book1_ROUGH.png
+map_Bump -bm 1.000000 Textures/Book1_NORM.png
+
+newmtl Book_2
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Textures/Book2_DIFF.png
+map_Ns Textures/Book2_ROUGH.png
+map_Bump -bm 1.000000 Textures/Book2_NORM.png
+
+newmtl Book_3
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Textures/Book.3_DIFF.png
+map_Ns Textures/Book.3_ROUGH.png
+map_Bump -bm 1.000000 Textures/Book.3_NORM.png
+
+newmtl Book_4
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Textures/Book.4_DIFF.png
+map_Ns Textures/Book.4_ROUGH.png
+map_Bump -bm 1.000000 Textures/Book.4_NORM.png
+
+newmtl Book_5
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Textures/Book.5_DIFF.png
+map_Ns Textures/Book.5_ROUGH.png
+map_Bump -bm 1.000000 Textures/Book.5_NORM.png
+
+newmtl Book_6
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Textures/Book.6_DIFF.png
+map_Ns Textures/Book.6_ROUGH.png
+map_Bump -bm 1.000000 Textures/Book.6_NORM.png

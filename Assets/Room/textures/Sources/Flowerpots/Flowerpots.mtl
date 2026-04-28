@@ -1,0 +1,57 @@
+# Blender 3.5.0 MTL File: 'Flowerpots.blend'
+# www.blender.org
+
+newmtl Flowerpot
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Textures/Flowerpots_DIFF.png
+map_Ns Textures/Flowerpots_ROUGH.png
+map_Bump -bm 1.000000 Textures/Flowerpots_NORM.png
+
+newmtl Flowerpot_1_Leaves
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 2
+map_Kd Textures/Flowerpot 1/Flowerpot1_Diffuse.jpg
+map_Ks Textures/Flowerpot 1/Flowerpot1_Specular.jpg
+map_Ns Textures/Flowerpot 1/Flowerpot1_Roughness.jpg
+map_d Textures/Flowerpot 1/Flowerpot1_Opacity.jpg
+map_Bump -bm 1.000000 Textures/Flowerpot 1/Flowerpot1_Normal.jpg
+
+newmtl Flowerpot_2_Rose_1
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 2
+map_Kd Textures/Flowerpot 2/Rose 1/Rose_1_Diffuse.jpg
+map_Ks Textures/Flowerpot 2/Rose 1/Rose_1_Specular.jpg
+map_Ns Textures/Flowerpot 2/Rose 1/Rose_1_Roughness.jpg
+map_d Textures/Flowerpot 2/Rose 1/Rose_1_Opacity.jpg
+map_Bump -bm 1.000000 Textures/Flowerpot 2/Rose 1/Rose_1_Normal.jpg
+
+newmtl Flowerpot_2_Rose_2
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 2
+map_Kd Textures/Flowerpot 2/Rose 2/Rose_2_Diffuse.jpg
+map_Ks Textures/Flowerpot 2/Rose 2/Rose_2_Specular.jpg
+map_Ns Textures/Flowerpot 2/Rose 2/Rose_2_Roughness.jpg
+map_d Textures/Flowerpot 2/Rose 2/Rose_2_Opacity.jpg
+map_Bump -bm 1.000000 Textures/Flowerpot 2/Rose 2/Rose_2_Normal.jpg
+
+newmtl Flowerpot_3_Flower
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 2
+map_Kd Textures/Flowerpot 3/Flowerpot3_Diffuse.jpg
+map_Ns Textures/Flowerpot 3/Flowerpot3_Roughness.jpg
+map_d Textures/Flowerpot 3/Flowerpot3_Opacity.jpg
+map_Bump -bm 1.000000 Textures/Flowerpot 3/Flowerpot3_NormalOpenGL.jpg

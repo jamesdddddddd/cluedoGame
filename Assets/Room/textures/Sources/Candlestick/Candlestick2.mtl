@@ -1,0 +1,24 @@
+# Blender 3.5.0 MTL File: 'Candlestick2.blend'
+# www.blender.org
+
+newmtl Candlestick
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Textures/CandleStick2_DIFF.png
+map_Ns Textures/CandleStick2_ROUGH.png
+map_Bump -bm 1.000000 Textures/CandleStick2_NORM.png
+
+newmtl Street_Lamp
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:/Users/reseo/Desktop/Blender Çalışmalar/Assets/Interior/Sources/Street Lamp/Textures/Street_Lamp_DIFF.png
+map_Ns C:/Users/reseo/Desktop/Blender Çalışmalar/Assets/Interior/Sources/Street Lamp/Textures/Street_Lamp_ROUGH.png
+map_Bump -bm 1.000000 C:/Users/reseo/Desktop/Blender Çalışmalar/Assets/Interior/Sources/Street Lamp/Textures/Street_Lamp_NORM.png
